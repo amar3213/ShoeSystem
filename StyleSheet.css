@@ -1,0 +1,17 @@
+﻿body {
+    background-color:antiquewhite;
+}
+div{
+    float:left;
+    padding:5px;
+}
+
+.label{
+    width:150px;
+    font-weight:bold;
+}
+
+
+.textRed{
+    color:red!important;
+}
