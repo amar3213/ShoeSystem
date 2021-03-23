@@ -136,5 +136,63 @@ namespace ShoeClasses
             }
             
         }
+
+        public string Valid(string customerFirstName, string customerLastName, string customerEmail, string customerTeleNo)
+        {
+            //create atring vairbale tos tore the error
+            String Error = "";
+            //if the CusomterFirstName is blank
+            if (customerFirstName.Length == 0)
+            {
+                //record error
+                Error = Error + "The customer first name must not be blank : ";
+            }
+            //if the customer first name is longer than 20 characters
+            if (customerFirstName.Length > 20)
+            {
+                //record error
+                Error = Error + "The customer first name must be less than 20 characters : ";
+            }
+            //if the CusomterLastName is blank
+            if (customerLastName.Length == 0)
+            {
+                //record error
+                Error = Error + "The customer Last name must not be blank : ";
+            }
+            //if the customer last name is longer than 20 characters
+            if (customerLastName.Length > 20)
+            {
+                //record error
+                Error = Error + "The customer Last name must be less than 20 characters : ";
+            }
+            //if the CusomterEmail is blank
+            if (customerEmail.Length == 0)
+            {
+                //record error
+                Error = Error + "The email address must not be blank : ";
+            }
+            //if the customer email is longer than 50 characters
+            if (customerEmail.Length > 50)
+            {
+                //record error
+                Error = Error + "The email address must be less than 50 characters : ";
+            }
+            //if the CusomterTeleNo is blank
+            if (customerTeleNo.Length == 0)
+            {
+                //record error
+                Error = Error + "The telephone No must not be blank : ";
+            }
+            //if the customer email is longer than 15 characters
+            if (customerTeleNo.Length > 15)
+            {
+                //record error
+                Error = Error + "The telephone No must be less than 15 characters : ";
+            }
+            //return the error messages
+            return Error;
+
+            
+        }
     }
 }

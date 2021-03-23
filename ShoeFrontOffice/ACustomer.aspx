@@ -32,9 +32,13 @@
         <p>
             &nbsp;</p>
         <p>
-            <asp:Button ID="btnOK" runat="server" style="z-index: 1; left: 10px; top: 281px; position: absolute; right: 1202px" Text="OK" OnClick="btnOK_Click" />
+            <asp:Button ID="btnOK" runat="server" style="z-index: 1; left: 16px; top: 327px; position: absolute; right: 1127px" Text="OK" OnClick="btnOK_Click" />
+            <asp:Label ID="lblError" runat="server" style="z-index: 1; left: 14px; top: 286px; position: absolute"></asp:Label>
         </p>
-        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 96px; top: 282px; position: absolute" Text="Cancel" />
+        <asp:Button ID="btnCancel" runat="server" style="z-index: 1; left: 62px; top: 328px; position: absolute" Text="Cancel" />
+        <p>
+            <asp:Button ID="btnDelete" runat="server" OnClick="btnDelete_Click" style="z-index: 1; left: 157px; top: 326px; position: absolute" Text="Delete" />
+        </p>
     </form>
 </body>
 </html>
