@@ -86,7 +86,7 @@ namespace ShoeClasses
 
             
 
-        public int CustomerID
+        public Int32 CustomerID
         {
             get
             {
@@ -94,7 +94,7 @@ namespace ShoeClasses
             }
             set
             {
-                value = mCustomerID;
+                mCustomerID = value;
             }
         }
 
