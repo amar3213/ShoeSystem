@@ -139,6 +139,6 @@ public partial class CustomerViewer : System.Web.UI.Page
 
     protected void ImageButton1_Click(object sender, ImageClickEventArgs e)
     {
-
+        Response.Redirect("HomePage.aspx");
     }
 }

@@ -140,4 +140,9 @@ public partial class ACustomer : System.Web.UI.Page
     {
         Response.Redirect("CustomerViewer.aspx");
     }
+
+    protected void txtTeleNo_TextChanged(object sender, EventArgs e)
+    {
+
+    }
 }
