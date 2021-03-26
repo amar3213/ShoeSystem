@@ -54,16 +54,78 @@ namespace ShoeClasses
 
         public clsCustomerCollection()
         {
-            //var for the index
-            Int32 Index = 0;
-            //car to store the record count
-            Int32 RecordCount = 0;
-            //object fro data connection
+  
             clsDataConnection DB = new clsDataConnection();
             //execute the stored procedure
             DB.Execute("sproc_tblCustomer_SelectAll");
-            //get the cound of records
+            //popilate the array list with data table 
+            PopulateArray(DB);
+    
+        }
+
+        public int Add()
+        {
+            //add a new record to the database based on the values on mThisCustomer
+            //connect to the datbase 
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerFirstName", mThisCustomer.CustomerFirstName);
+            DB.AddParameter("@CustomerLastName", mThisCustomer.CustomerLastName);
+            DB.AddParameter("@CustomerEmail", mThisCustomer.CustomerEmail);
+            DB.AddParameter("@CustomerTeleNo", mThisCustomer.CustomerTeleNo);
+            DB.AddParameter("@Active", mThisCustomer.Active);
+            //execute the stored procedure returning the primary key val of hte new record 
+            return DB.Execute("sproc_tblCustomer_Insert");
+        }
+
+        public void Delete()
+        {
+            //deletes the record pointed to by thisCustomer
+            //connect to the database
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerID", mThisCustomer.CustomerID);
+            //execute the stored procedure
+            DB.Execute("sproc_tblCustomer_Delete");
+        }
+
+        public void Update()
+        {
+            //create a connection to the database
+            clsDataConnection DB = new clsDataConnection();
+            //add the address no parameter
+            DB.AddParameter("@CustomerID", mThisCustomer.CustomerID);
+            //add the CustomerFirstName  parameter
+            DB.AddParameter("@CustomerFirstName", mThisCustomer.CustomerFirstName);
+            //add the street parameter
+            DB.AddParameter("@CustomerLastName", mThisCustomer.CustomerLastName);
+            //add the town parameter
+            DB.AddParameter("@CustomerEmail", mThisCustomer.CustomerEmail);
+            //add the post code parameter
+            DB.AddParameter("@CustomerTeleNo", mThisCustomer.CustomerTeleNo);
+            //add the active parameter
+            DB.AddParameter("@Active", mThisCustomer.Active);
+            //execute the query
+            DB.Execute("sproc_tblCustomer_Update");
+        }
+
+        public void ReportByEmail(string CustomerEmail)
+        {
+            clsDataConnection DB = new clsDataConnection();
+            DB.AddParameter("@CustomerEmail", CustomerEmail);
+            //execute stored procedure
+            DB.Execute("sproc_tblCustomer_FilterByEmail");
+            PopulateArray(DB);
+        }
+
+       void PopulateArray(clsDataConnection DB)
+        {
+            //var for the index
+            Int32 Index = 0;
+            //car to store the record count
+            Int32 RecordCount;
+            //object fro data connection
             RecordCount = DB.Count;
+            //clear the pricate arraylist 
+            mCustomerList = new List<clsCustomer>();
             //while threre are records to process
             while (Index < RecordCount)
             {
@@ -81,30 +143,6 @@ namespace ShoeClasses
                 //point at hte nexxt record
                 Index++;
             }
-        }
-
-        public int Add()
-        {
-            //add a new record to the database based on the values on mThisCustomer
-            //connect to the datbase 
-            clsDataConnection DB = new clsDataConnection();
-            DB.AddParameter("@CustomerFirstName", mThisCustomer.CustomerFirstName);
-            DB.AddParameter("@CustomerLastNamer", mThisCustomer.CustomerLastName);
-            DB.AddParameter("@CustomerEmail", mThisCustomer.CustomerEmail);
-            DB.AddParameter("@CustomerTeleNo", mThisCustomer.CustomerTeleNo);
-            DB.AddParameter("@Active", mThisCustomer.Active);
-            //execute the stored procedure returning the primary key val of hte new record 
-            return DB.Execute("sproc_tblCustomer_Insert");
-        }
-
-        public void Delete()
-        {
-            //deletes the record pointed to by thisCustomer
-            //connect to the database
-            clsDataConnection DB = new clsDataConnection();
-            DB.AddParameter("@CustomerID", mThisCustomer.CustomerID);
-            //execute the stored procedure
-            DB.Execute("sproc_tblCustomer_Delete");
         }
     }
 }
