@@ -842,5 +842,69 @@ namespace Shoe_Testing
             Assert.IsFalse(Found);
         }
 
+        [TestMethod]
+        public void UpdateMethodOK()
+        {
+            //create an instanceof the clas we watn to create
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            //create the item of test data
+            clsCustomer TestItem = new clsCustomer();
+            //var to streo the primary key
+            Int32 PrimaryKey = 0;
+            //set its properties
+            TestItem.Active = true;
+            TestItem.CustomerID = 1;
+            TestItem.CustomerFirstName = "First";
+            TestItem.CustomerLastName = "Last";
+            TestItem.CustomerEmail = "test@test.com";
+            TestItem.CustomerTeleNo = "XXXXXXXXXX";
+            //set thiscustomer to thetest data
+            AllCustomers.ThisCustomer = TestItem;
+            //add the record
+            PrimaryKey = AllCustomers.Add();
+            //find the record
+            TestItem.CustomerID = PrimaryKey;
+            //modify teh test data
+            TestItem.Active = false;
+            TestItem.CustomerID = 2;
+            TestItem.CustomerFirstName = "First2";
+            TestItem.CustomerLastName = "Last2";
+            TestItem.CustomerEmail = "test2@test.com";
+            TestItem.CustomerTeleNo = "XXXXXXXXX2";
+            //set the record basedon the new test data
+            AllCustomers.ThisCustomer = TestItem;
+            //update the record
+            AllCustomers.Update();
+            //findt the record
+            AllCustomers.ThisCustomer.Find(PrimaryKey);
+            //test to see that the teo valies are the same
+            Assert.AreEqual(AllCustomers.ThisCustomer, TestItem);
+
+        }
+
+        [TestMethod]
+        public void ReportByEmailMethodOK()
+        {
+            //createa an instance of the calss contaion unfiltered results
+            clsCustomerCollection AllCustomers = new clsCustomerCollection();
+            //create an instance of the fultered data
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            //apply a blank string 
+            FilteredCustomers.ReportByEmail("");
+            //test to see that the two values are the same
+            Assert.AreEqual(AllCustomers.Count, FilteredCustomers.Count);
+        }
+
+        [TestMethod]
+        public void ReportByEmailNotFound()
+        {
+            //create an instance of the filtered adata
+            clsCustomerCollection FilteredCustomers = new clsCustomerCollection();
+            //apply a post code that doesnt exist
+            FilteredCustomers.ReportByEmail("xxxx@xxxx.xxx");
+            //test to see that there are no records
+            Assert.AreEqual(0, FilteredCustomers.Count);
+        }
+
     }
 }
