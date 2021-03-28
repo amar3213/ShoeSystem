@@ -610,7 +610,7 @@
             this.metroLabel14.AutoSize = true;
             this.metroLabel14.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.metroLabel14.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel14.Location = new System.Drawing.Point(1237, 35);
+            this.metroLabel14.Location = new System.Drawing.Point(1075, 35);
             this.metroLabel14.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.metroLabel14.Name = "metroLabel14";
             this.metroLabel14.Size = new System.Drawing.Size(134, 25);
